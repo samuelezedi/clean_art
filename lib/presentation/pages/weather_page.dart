@@ -1,4 +1,3 @@
-
 import 'package:clean_art/data/constants.dart';
 import 'package:clean_art/presentation/bloc/weather_bloc.dart';
 import 'package:clean_art/presentation/bloc/weather_event.dart';
@@ -80,8 +79,8 @@ class WeatherPage extends StatelessWidget {
                         ),
                         children: [
                           TableRow(children: [
-                            Padding(
-                              padding: const EdgeInsets.all(8.0),
+                            const Padding(
+                              padding: EdgeInsets.all(8.0),
                               child: Text(
                                 'Temperature',
                                 style: TextStyle(
@@ -94,7 +93,7 @@ class WeatherPage extends StatelessWidget {
                               padding: const EdgeInsets.all(8.0),
                               child: Text(
                                 state.result.temperature.toString(),
-                                style: TextStyle(
+                                style: const TextStyle(
                                   fontSize: 16.0,
                                   letterSpacing: 1.2,
                                   fontWeight: FontWeight.bold,
@@ -103,8 +102,8 @@ class WeatherPage extends StatelessWidget {
                             ), // Will be change later
                           ]),
                           TableRow(children: [
-                            Padding(
-                              padding: const EdgeInsets.all(8.0),
+                            const Padding(
+                              padding: EdgeInsets.all(8.0),
                               child: Text(
                                 'Pressure',
                                 style: TextStyle(
@@ -117,7 +116,7 @@ class WeatherPage extends StatelessWidget {
                               padding: const EdgeInsets.all(8.0),
                               child: Text(
                                 state.result.pressure.toString(),
-                                style: TextStyle(
+                                style: const TextStyle(
                                     fontSize: 16.0,
                                     letterSpacing: 1.2,
                                     fontWeight: FontWeight.bold),
@@ -125,8 +124,8 @@ class WeatherPage extends StatelessWidget {
                             ), // Will be change later
                           ]),
                           TableRow(children: [
-                            Padding(
-                              padding: const EdgeInsets.all(8.0),
+                            const Padding(
+                              padding: EdgeInsets.all(8.0),
                               child: Text(
                                 'Humidity',
                                 style: TextStyle(
@@ -139,7 +138,7 @@ class WeatherPage extends StatelessWidget {
                               padding: const EdgeInsets.all(8.0),
                               child: Text(
                                 state.result.humidity.toString(),
-                                style: TextStyle(
+                                style: const TextStyle(
                                   fontSize: 16.0,
                                   letterSpacing: 1.2,
                                   fontWeight: FontWeight.bold,
@@ -152,11 +151,11 @@ class WeatherPage extends StatelessWidget {
                     ],
                   );
                 } else if (state is WeatherError) {
-                  return Center(
+                  return const Center(
                     child: Text('Something went wrong!'),
                   );
                 } else {
-                  return SizedBox();
+                  return const SizedBox();
                 }
               },
             ),
@@ -166,4 +165,3 @@ class WeatherPage extends StatelessWidget {
     );
   }
 }
-view rawweather_page.dart hosted with ❤ by GitHub
