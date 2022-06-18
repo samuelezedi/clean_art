@@ -1,3 +1,7 @@
+import 'dart:io';
+
+import 'package:clean_art/data/exception.dart';
+import 'package:clean_art/data/failure.dart';
 import 'package:clean_art/data/models/weather_model.dart';
 import 'package:clean_art/data/repositories/weather_repository_impl.dart';
 import 'package:clean_art/domain/entities/weather.dart';
@@ -53,6 +57,38 @@ void main() {
       //assert
       verify(mockRemoteDataSource.getCurrentWeather(tCityName));
       expect(result, equals(const Right(tWeather)));
+    });
+
+    test(
+        'should return server failure when a call to data source is unsuccessful',
+        () async {
+      //arrange
+      when(mockRemoteDataSource.getCurrentWeather(tCityName))
+          .thenThrow(ServerException());
+
+      //act
+      final result = await repository.getCurrentWeather(tCityName);
+
+      //assert
+      verify(mockRemoteDataSource.getCurrentWeather(tCityName));
+      expect(result, equals(const Left(ServerFailure(''))));
+    });
+
+    test('should return connection failuer when the device has no internet',
+        () async {
+      //arrange
+      when(mockRemoteDataSource.getCurrentWeather(tCityName))
+          .thenThrow(const SocketException('Failed to connect to the network'));
+
+      //act
+      final result = await repository.getCurrentWeather(tCityName);
+
+      //assert
+      verify(mockRemoteDataSource.getCurrentWeather(tCityName));
+      expect(
+          result,
+          equals(const Left(
+              ConnectionFailure('Failed to connect to the network'))));
     });
   });
 }
